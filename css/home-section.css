@@ -3,6 +3,10 @@ body {
     font-family: 'Roboto Slab', serif;
 }
 
+html {
+    background-color: #000000;
+}
+
 section {
     background: white;
     background-color: #7c7b7b;
