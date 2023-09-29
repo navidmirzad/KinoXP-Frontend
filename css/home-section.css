@@ -5,6 +5,10 @@ body {
 
 section {
     background: white;
+    background-color: #7c7b7b;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
 }
 
 .hero {
@@ -61,7 +65,7 @@ h1 {
 }
 
 h2 {
-    font-size: 55px;
+    font-size: 60px;
 }
 
 p {

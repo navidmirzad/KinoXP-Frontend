@@ -1,0 +1,43 @@
+.playing-now-header, h2 {
+    text-align: center; /* Center-align the contents horizontally */
+    display: flex;
+    justify-content: center; /* Center-align the contents vertically */
+    align-items: center;
+    background-color: #9f2b2b;
+    margin: 5px;
+}
+
+.movie-card {
+    width: 300px;
+    height: 510px;
+    border: 1px solid black;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.movie-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .project-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.movie-image {
+    width: 300px;
+}
+
+hr {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.movie-link {
+    text-decoration: none;
+    color: #ef744b;
+}
