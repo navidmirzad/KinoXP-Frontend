@@ -1,0 +1,17 @@
+.footer {
+    background-color: lightgray;
+    padding: 80px;
+    text-align: center;
+}
+
+.footer .copyright {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.footer p {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 15px;
+}
