@@ -1,51 +1,71 @@
-.form-container {
+.form-input-section {
+    padding: 40px;
+    margin: 30px;
+    border-radius: 30px;
     background-color: #ffffff;
-    max-width: 400px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 60vh;
 }
 
-.form-container label {
+.input-container {
+    text-align: center;
+}
+
+/* Style the labels */
+label {
     font-weight: bold;
 }
 
-.form-container input[type="text"],
-.form-container textarea,
-.form-container input[type="url"],
-.form-container input[type="date"] {
+/* Style the input fields */
+input[type="text"],
+input[type="url"],
+input[type="date"],
+textarea {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    resize: none;
 }
 
-.form-container input[type="checkbox"] {
+/* Style the checkboxes and labels for movie genres */
+input[type="checkbox"] {
     margin-right: 5px;
+    margin-bottom: 5px;
 }
 
-.form-container hr {
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.form-container button[type="submit"] {
+/* Style the submit button */
+button[type="submit"] {
     background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-    width: 100%;
+    font-size: 16px;
 }
 
-.form-container button[type="submit"]:hover {
+button[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+/* Style the horizontal lines */
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+/* Center the form horizontally */
+.form-input-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Optional: Add some spacing between the genres for better readability */
+label[for^="genreType"] {
+    display: block;
 }

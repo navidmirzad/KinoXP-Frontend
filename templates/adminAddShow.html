@@ -4,6 +4,9 @@
   <link rel="stylesheet" href="../css/home-section.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/inputContainer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto+Slab:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <title>Add Shows</title>
 </head>
@@ -29,53 +32,46 @@
 <section class="form-input-section" id="form-input">
   <div class="input-container">
     <form action="My-action-url" method="POST"></form>
-    <label>Movie title: </label>
-    <br>
-    <input type="text" name="title" placeholder="Insert movie title..." required>
-    <hr>
-    <label>Movie description: </label>
-    <br>
-    <textarea id="description" name="description" rows="4" cols="50" placeholder="Movie description..." required></textarea>
-    <hr>
-    <label>Image url: </label>
-    <br>
+    <h3><label>Movie title: </label></h3>
+    <input type="text" name="title" placeholder="Insert movie title..." required/>
+
+    <h3><label>Movie description: </label></h3>
+    <textarea id="description" name="description" rows="5" cols="50" placeholder="Movie description..." required></textarea>
+
+    <h3><label>Image url: </label></h3>
     <input type="url" name="image" placeholder="Input image url..." required/>
-    <hr>
-    <label>Release Year: </label>
-    <br>
+
+    <h3><label>Release Year: </label></h3>
     <input type="date" name="year" placeholder="Insert release year" required/>
-    <hr>
-    <label>Movie Trailer: </label>
-    <br>
+
+    <h3><label>Movie Trailer: </label></h3>
     <input type="url" name="url" placeholder="Insert trailer URL" required/>
+
+    <h3><label>Movie Genre: </label></h3>
     <hr>
-    <label>Movie Genre: </label>
-    <br>
     Action
     <input type="checkbox" name="genreType1" value="Action">
     Adventure
-    <input type="checkbox" name="genreType2"  />
+    <input type="checkbox" name="genreType2" />
     Comedy
-    <input type="checkbox" name="genreType3"  />
+    <input type="checkbox" name="genreType3" />
     Drama
-    <input type="checkbox" name="genreType4"  />
+    <input type="checkbox" name="genreType4" />
     Horror
-    <input type="checkbox" name="genreType5"  />
+    <input type="checkbox" name="genreType5" />
     Romance
-    <input type="checkbox" name="genreType6"  />
+    <input type="checkbox" name="genreType6" />
     Science fiction
-    <input type="checkbox" name="genreType7"  />
+    <input type="checkbox" name="genreType7" />
     Fantasy
-    <input type="checkbox" name="genreType8"  />
+    <input type="checkbox" name="genreType8" />
     Historical
-    <input type="checkbox" name="genreType9"  />
+    <input type="checkbox" name="genreType9" />
     Crime
     <input type="checkbox" name="genreType10"  />
     <hr>
-    <label>Director: </label>
-    <br>
+    <h3><label>Director: </label></h3>
     <input type="text" name="director" placeholder="Insert directors name..." required/>
-    <hr>
     <button type="submit">Submit</button>
     </form>
   </div>
