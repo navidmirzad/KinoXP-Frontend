@@ -1,0 +1,23 @@
+
+.modal {
+    display: none; / Initially, hide the modal element /
+    position: fixed; / Fix the modal's position relative to the viewport /
+    top: 0; / Position it at the top of the viewport /
+    left: 0; / Position it at the left edge of the viewport /
+    width: 100%; / Make the modal as wide as the viewport /
+    height: 100%; / Make the modal as tall as the viewport /
+    background-color: rgba(0,0,0,0.7); / Set a semi-transparent black background /
+    z-index: 1; / Set the stacking order for the modal /
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.5); / Set a semi-transparent white background for the modal content /
+    margin: 10% auto; / Add a top margin of 10% and center the modal horizontally using auto margins /
+    padding: 20px; / Add padding inside the modal content /
+    width: 60%; / Set the width of the modal content of its container /
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); / Apply a box shadow to create a subtle shadow effect /
+    display: flex; / Use Flexbox layout for the modal content /
+    flex-direction: column; / Stack child elements vertically within the modal content /
+    justify-content: center; / Vertically center the child elements within the modal content /
+    align-items: center; / Horizontally center the child elements within the modal content */
+}
