@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/home-section.css"/>
+    <link rel="stylesheet" href="/css/movie-container.css"/>
+    <link rel="stylesheet" href="/css/input-container.css"/>
+    <link rel="stylesheet" href="/css/modal.css"/>
+    <link rel="stylesheet" href="/css/footer.css"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto+Slab:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>KinoXP Frontpage</title>
+</head>
+<body>
+<section class="hero" id="home">
+    <nav class="nav" id="navbar">
+        <a href="#home"><img class="logo" src="/images/logo.png" alt="Navids Logo"></a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <hr>
+            <li><a href="#movies">Movies</a></li>
+            <hr>
+            <li><a href="#contact">Conctact</a></li>
+        </ul>
+    </nav>
+    <div class="hero-area">
+        <div class="hero-text">
+            <h1>KinoXP</h1>
+            <p>Your favorite Cinema!</p>
+        </div>
+        <div class="slider-frame">
+            <div class="slide-images">
+                <div class="img-container">
+                    <img src="/images/slideshow1.jpg" alt="SlideshowImage1" width="1024" height="576">
+                </div>
+                <div class="img-container">
+                    <img src="/images/slideshow2.jpg" alt="SlideshowImage2" width="1024" height="576">
+                </div>
+                <div class="img-container">
+                    <img src="/images/slideshow3.jpg" alt="SlideshowImage3" width="1024" height="576">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sub-section-alternative" id="playing-now">
+    <div class="playing-now-header">
+        <h2>Playing now</h2>
+    </div>
+</section>
+
+<section id="modal">
+    <button id="myBtn">Add Movie</button>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form action="My-action-url" method="POST"></form>
+            <h3><label>Movie title: </label></h3>
+            <input type="text" name="title" placeholder="Insert movie title..." required="required"/>
+
+            <h3><label>Movie description: </label></h3>
+            <textarea id="description" name="description" rows="5" cols="50" placeholder="Movie description..."
+                      required></textarea>
+
+            <h3><label>Image url: </label></h3>
+            <input type="url" name="image" placeholder="Input image url..." required/>
+
+            <h3><label>Release Year: </label></h3>
+            <input type="date" name="year" placeholder="Insert release year" required/>
+
+            <h3><label>Movie Trailer: </label></h3>
+            <input type="url" name="url" placeholder="Insert trailer URL" required/>
+
+            <h3><label>Movie Genre: </label></h3>
+            <hr>
+            Action
+            <input type="checkbox" name="genreType1" value="Action">
+            Adventure
+            <input type="checkbox" name="genreType2"/>
+            Comedy
+            <input type="checkbox" name="genreType3"/>
+            Drama
+            <input type="checkbox" name="genreType4"/>
+            Horror
+            <input type="checkbox" name="genreType5"/>
+            Romance
+            <input type="checkbox" name="genreType6"/>
+            Science fiction
+            <input type="checkbox" name="genreType7"/>
+            Fantasy
+            <input type="checkbox" name="genreType8"/>
+            Historical
+            <input type="checkbox" name="genreType9"/>
+            Crime
+            <input type="checkbox" name="genreType10"/>
+            <hr>
+            <h3><label>Director: </label></h3>
+            <input type="text" name="director" placeholder="Insert directors name..." required/>
+            <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="sub-section-alternative" id="movies">
+    <div class="movie-container">
+        <div class="movie-card">
+            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
+            <h3>Suzume No Tojimari</h3>
+            <p>Short summary of movie/plot</p>
+            <hr/>
+            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
+                  rel="noreferrer">View here</a></p>
+        </div>
+        <div class="movie-card">
+            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
+            <h3>Suzume No Tojimari</h3>
+            <p>Short summary of movie/plot</p>
+            <hr/>
+            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
+                  rel="noreferrer">View here</a></p>
+        </div>
+        <div class="movie-card">
+            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
+            <h3>Suzume No Tojimari</h3>
+            <p>Short summary of movie/plot</p>
+            <hr/>
+            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
+                  rel="noreferrer">View here</a></p>
+        </div>
+        <div class="movie-card">
+            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
+            <h3>Suzume No Tojimari</h3>
+            <p>Short summary of movie/plot</p>
+            <hr/>
+            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
+                  rel="noreferrer">View here</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="footer" id="contact">
+    <div><a href="https://github.com/navidmirzad/KinoXP" target="_blank" rel="noopener" rel="noreferrer" class="social">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" width="50" height="50" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+    </a></div>
+    <p class="copyright">
+        2023 <br>
+        Enes Kocer <br>
+        Navid Mirzad <br>
+        Youssef Talbi <br>
+        André Jensen <br>
+        Mathias Wulff <br>
+    </p>
+    <br> <br>
+</section>
+
+<script src="/js/frontpage.js"></script>
+</body>
+</html>

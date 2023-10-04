@@ -36,6 +36,18 @@ section {
     background-color: #1e202a;
     width: 100%;
     border-radius: 12px;
+    overflow: hidden;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 60px;
 }
 
 ul {
@@ -61,6 +73,17 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.modal {
+    background-color: #7c7b7b;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#modal {
+
 }
 
 button:hover {
