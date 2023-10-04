@@ -22,3 +22,6 @@
     align-items: center; / Horizontally center the child elements within the modal content */
 }
 
+.login-header {
+    color: #2c2c2c
+}
