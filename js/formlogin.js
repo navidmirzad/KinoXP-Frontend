@@ -10,7 +10,6 @@ function createFormEventListener() {
 }
 
 async function handleFormSubmit(event) {
-    //Vi handler submitten her i stedet for default html behaviour
     event.preventDefault()
     const form = event.currentTarget;
     const url = form.action;
