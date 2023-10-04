@@ -59,49 +59,34 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <form action="My-action-url" method="POST"></form>
+            <form method="POST" action="addmovie"></form>
             <h3><label>Movie title: </label></h3>
-            <input type="text" name="title" placeholder="Insert movie title..." required="required"/>
+            <input type="text" name="title" id="title" placeholder="Insert movie title..." required="required"/>
 
             <h3><label>Movie description: </label></h3>
-            <textarea id="description" name="description" rows="5" cols="50" placeholder="Movie description..."
+            <textarea id="description" name="description" id="description" rows="5" cols="50" placeholder="Movie description..."
                       required></textarea>
 
             <h3><label>Image url: </label></h3>
-            <input type="url" name="image" placeholder="Input image url..." required/>
+            <input type="url" name="image" id="imageUrl" placeholder="Input image url..." required/>
 
             <h3><label>Release Year: </label></h3>
-            <input type="date" name="year" placeholder="Insert release year" required/>
+            <input type="text" name="year" id="year" placeholder="Insert release year" required/>
 
             <h3><label>Movie Trailer: </label></h3>
-            <input type="url" name="url" placeholder="Insert trailer URL" required/>
+            <input type="url" name="url" id="trailerUrl" placeholder="Insert trailer URL" required/>
 
             <h3><label>Movie Genre: </label></h3>
             <hr>
-            Action
-            <input type="checkbox" name="genreType1" value="Action">
-            Adventure
-            <input type="checkbox" name="genreType2"/>
-            Comedy
-            <input type="checkbox" name="genreType3"/>
-            Drama
-            <input type="checkbox" name="genreType4"/>
-            Horror
-            <input type="checkbox" name="genreType5"/>
-            Romance
-            <input type="checkbox" name="genreType6"/>
-            Science fiction
-            <input type="checkbox" name="genreType7"/>
-            Fantasy
-            <input type="checkbox" name="genreType8"/>
-            Historical
-            <input type="checkbox" name="genreType9"/>
-            Crime
-            <input type="checkbox" name="genreType10"/>
+            <div id="checkboxContainer">
+                <label>Genres:</label>
+            </div>
             <hr>
             <h3><label>Director: </label></h3>
-            <input type="text" name="director" placeholder="Insert directors name..." required/>
-            <button type="submit">Submit</button>
+            <input type="text" name="director" id="director" placeholder="Insert directors name..." required/>
+            <button id="submit-movie-btn">Submit</button>
+            <button id="generateCheckboxes">Generate Checkboxes</button>
+
             </form>
         </div>
     </div>
@@ -161,6 +146,8 @@
     <br> <br>
 </section>
 
-<script src="/js/frontpage.js"></script>
+<script src="/js/modal.js"></script>
+<script src="/js/addmovie.js"></script>
+<script src="/js/checkboxes.js"></script>
 </body>
 </html>
