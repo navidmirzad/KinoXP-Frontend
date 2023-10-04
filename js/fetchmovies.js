@@ -1,4 +1,6 @@
 
+import {fetchAnyUrl} from "./modulejson.js";
+
 const urlBase = "https://imdb-top-100-movies.p.rapidapi.com";
 const limit = 5;
 const urlMovies = `${urlBase}?limit=${limit}`;
@@ -43,10 +45,6 @@ function insertMovieCards(movie) {
 }
 
 let movies = []
-
-function fetchAnyUrl(url) {
-    return  fetch(url).then(response => response.json());
-}
 
 async function fetchMovies() {
     const movieContainer = document.getElementById(".movie-container")

@@ -12,4 +12,10 @@ async function postObjectAsJson(url, object, httpVerbum) {
     return response
 }
 
-export {postObjectAsJson}
+
+function fetchAnyUrl(url) {
+    return  fetch(url).then(response => response.json());
+}
+
+
+export {postObjectAsJson, fetchAnyUrl}
