@@ -1,4 +1,6 @@
 
+import {fetchAnyUrl} from "/js/modulejson.js";
+
 const urlBase = "http://localhost:8080/kinoxp";
 const limit = 5;
 const urlMovies = `${urlBase}?limit=${limit}`;
@@ -38,10 +40,6 @@ function insertMovieCards(movie) {
 
     const movieContainer = document.querySelector('.movie-container');
     movieContainer.appendChild(movieCardDiv);
-}
-
-function fetchAnyUrl(url) {
-    return  fetch(url).then(response => response.json());
 }
 
 let movies = []

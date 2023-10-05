@@ -1,5 +1,5 @@
 
-import {postObjectAsJson} from "./modulejson.js";
+import {postObjectAsJson} from "/js/modulejson.js";
 
 document.addEventListener('DOMContentLoaded', createFormEventListener);
 let loginForm;
