@@ -1,5 +1,5 @@
 
-import {fetchAnyUrl} from "/js/modulejson.js";
+import {fetchAnyUrl} from "./modulejson.js";
 
 const urlBase = "http://localhost:8080/kinoxp";
 const limit = 5;

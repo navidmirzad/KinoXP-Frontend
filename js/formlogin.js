@@ -1,5 +1,5 @@
 
-import {postObjectAsJson} from "/js/modulejson.js";
+import {postObjectAsJson} from "./modulejson.js";
 
 document.addEventListener('DOMContentLoaded', createFormEventListener);
 let loginForm;
@@ -18,7 +18,10 @@ async function handleFormSubmit(event) {
     try {
         const formData = new FormData(form);
         console.log(formData);
-        const responseData = await postFormDataAsJson(url, formData);
+        const response = await postFormDataAsJson(url, formData);
+        if (response.ok) {
+           window.location.href = "http://localhost:63342/KinoXP-Frontend/templates/frontpage.html?_ijt=r0ejg0qsadu3308bliu0t7eei5&_ij_reload=RELOAD_ON_SAVE"
+        }
     } catch (error) {
         alert(error.message);
         console.error(error);
@@ -28,6 +31,6 @@ async function handleFormSubmit(event) {
 async function postFormDataAsJson(url, formData) {
     const plainFormData = Object.fromEntries(formData.entries());
     console.log(plainFormData)
-    const response = postObjectAsJson(url, plainFormData, "POST")
+    const response = await postObjectAsJson(url, plainFormData, "POST")
     return response
 }
