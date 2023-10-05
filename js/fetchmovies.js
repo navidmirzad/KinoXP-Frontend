@@ -1,6 +1,4 @@
 
-
-
 const urlBase = "http://localhost:8080/kinoxp";
 const limit = 5;
 const urlMovies = `${urlBase}?limit=${limit}`;
@@ -22,7 +20,6 @@ function insertMovieCards(movie) {
     movieSummary.innerText = movie.description
 
     const hr = document.createElement("hr")
-
 
     const movieLinkWrapper = document.createElement('p')
     const movieLink = document.createElement('a')
@@ -51,16 +48,12 @@ let movies = []
 
 async function fetchMovies() {
     const movieContainer = document.querySelector(".movie-container")
-    //movieCard.innerHTML = ""
-    console.log("xxxxxxxxxxxx")
-    console.log(movieCard)
     movieContainer.appendChild(movieCard)
     movies = await fetchAnyUrl(urlMovies)
     movies.forEach(insertMovieCards)
 }
 
 function actionGetMovies() {
-    console.log("yyyyyyyyyyyy")
     fetchMovies()
 }
 

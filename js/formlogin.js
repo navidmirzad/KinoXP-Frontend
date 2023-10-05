@@ -19,9 +19,6 @@ async function handleFormSubmit(event) {
         const formData = new FormData(form);
         console.log(formData);
         const responseData = await postFormDataAsJson(url, formData);
-        if (responseData.ok) {
-            window.location.href="www.dr.dk"
-        }
     } catch (error) {
         alert(error.message);
         console.error(error);
