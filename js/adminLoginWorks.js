@@ -24,7 +24,7 @@ async function postLoginModal() {
 
     if (res.ok) {
         loginResultDiv.textContent = "Login successful";
-
+        window.location.href="adminFrontpage.html";
             // closes modal after succesful login
             const loginModal = document.getElementById('loginModal');
             loginModal.style.display = 'none';
