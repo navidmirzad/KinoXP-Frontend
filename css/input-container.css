@@ -1,9 +1,9 @@
 .form-input-section {
-    padding: 40px;
     margin: 30px;
-    border-radius: 30px;
+    border-radius: 35px;
     background-color: #ffffff;
-    height: 60vh;
+    height: 30vh;
+    width: 100%;
 }
 
 .input-container {
@@ -17,8 +17,7 @@ label {
 
 /* Style the input fields */
 input[type="text"],
-input[type="url"],
-input[type="date"],
+input[type="password"],
 textarea {
     width: 100%;
     padding: 10px;
@@ -26,12 +25,6 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
     resize: none;
-}
-
-/* Style the checkboxes and labels for movie genres */
-input[type="checkbox"] {
-    margin-right: 5px;
-    margin-bottom: 5px;
 }
 
 /* Style the submit button */
@@ -62,10 +55,5 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
-
-/* Optional: Add some spacing between the genres for better readability */
-label[for^="genreType"] {
-    display: block;
+    height: 40vh;
 }
