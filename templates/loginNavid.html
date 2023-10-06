@@ -11,6 +11,7 @@
   <title>Add Shows</title>
 </head>
 <body>
+
 <nav class="nav">
   <a href="#home"><img class="logo" src="/images/logo.png" alt="Navids Logo"></a>
   <ul>
@@ -31,48 +32,14 @@
 
 <section class="form-input-section" id="form-input">
   <div class="input-container">
-    <form action="My-action-url" method="POST"></form>
-    <h3><label>Movie title: </label></h3>
-    <input type="text" name="title" placeholder="Insert movie title..." required/>
-
-    <h3><label>Movie description: </label></h3>
-    <textarea id="description" name="description" rows="5" cols="50" placeholder="Movie description..." required></textarea>
-
-    <h3><label>Image url: </label></h3>
-    <input type="url" name="image" placeholder="Input image url..." required/>
-
-    <h3><label>Release Year: </label></h3>
-    <input type="date" name="year" placeholder="Insert release year" required/>
-
-    <h3><label>Movie Trailer: </label></h3>
-    <input type="url" name="url" placeholder="Insert trailer URL" required/>
-
-    <h3><label>Movie Genre: </label></h3>
-    <hr>
-    Action
-    <input type="checkbox" name="genreType1" value="Action">
-    Adventure
-    <input type="checkbox" name="genreType2" />
-    Comedy
-    <input type="checkbox" name="genreType3" />
-    Drama
-    <input type="checkbox" name="genreType4" />
-    Horror
-    <input type="checkbox" name="genreType5" />
-    Romance
-    <input type="checkbox" name="genreType6" />
-    Science fiction
-    <input type="checkbox" name="genreType7" />
-    Fantasy
-    <input type="checkbox" name="genreType8" />
-    Historical
-    <input type="checkbox" name="genreType9" />
-    Crime
-    <input type="checkbox" name="genreType10"  />
-    <hr>
-    <h3><label>Director: </label></h3>
-    <input type="text" name="director" placeholder="Insert directors name..." required/>
-    <button type="submit">Submit</button>
+    <form action="http://localhost:8080/login" method="POST"></form>
+    <h3><label>Username</label></h3>
+    <input type="text" name="username" placeholder="Username..." required="required"/>
+    <br>
+    <h3><label>Password</label></h3>
+    <input type="password" name="password" placeholder="Password..." required="required"/>
+    <br> <br>
+    <button type="submit">Log in</button>
     </form>
   </div>
 </section>

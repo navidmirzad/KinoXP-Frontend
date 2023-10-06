@@ -12,7 +12,6 @@ async function postObjectAsJson(url, object, httpVerbum) {
     return response
 }
 
-
 function fetchAnyUrl(url) {
     return  fetch(url).then(response => response.json());
 }
