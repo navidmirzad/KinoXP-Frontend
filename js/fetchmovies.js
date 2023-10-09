@@ -4,16 +4,22 @@ import {fetchAnyUrl} from "./modulejson.js";
 const urlBase = "http://localhost:8080/kinoxp";
 const limit = 5;
 const urlMovies = `${urlBase}?limit=${limit}`;
-const movieCard = document.querySelector(".movie-card")
 
 function insertMovieCards(movie) {
     const movieCardDiv = document.createElement("div")
     movieCardDiv.className = "movie-card"
+    movieCardDiv.setAttribute("data-id", movie.id)
+
+    const movieImageLink = document.createElement("a")
+    movieImageLink.href = "/kino/movie"
+    movieImageLink.id = "movie-poster-link"
 
     const movieImage = document.createElement("img")
     movieImage.className = "movie-image"
     movieImage.setAttribute("src", movie.image)
     movieImage.setAttribute("alt","Movie Image")
+
+    movieImageLink.appendChild(movieImage)
 
     const movieTitle = document.createElement('h3');
     movieTitle.innerText = movie.title;
@@ -32,7 +38,7 @@ function insertMovieCards(movie) {
     movieLink.innerText = "View here"
     movieLinkWrapper.appendChild(movieLink)
 
-    movieCardDiv.appendChild(movieImage);
+    movieCardDiv.appendChild(movieImageLink);
     movieCardDiv.appendChild(movieTitle);
     movieCardDiv.appendChild(movieSummary);
     movieCardDiv.appendChild(hr);
@@ -45,8 +51,6 @@ function insertMovieCards(movie) {
 let movies = []
 
 async function fetchMovies() {
-    const movieContainer = document.querySelector(".movie-container")
-    movieContainer.appendChild(movieCard)
     movies = await fetchAnyUrl(urlMovies)
     movies.forEach(insertMovieCards)
 }
