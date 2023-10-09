@@ -33,6 +33,7 @@ function insertMovieCards(movie) {
     const movieLink = document.createElement('a')
     movieLink.className = "movie-link"
     movieLink.href = movie.trailer
+    console.log(movie.trailer)
     movieLink.target = "_blank"
     movieLink.rel = "noopener noreferrer"
     movieLink.innerText = "View here"
