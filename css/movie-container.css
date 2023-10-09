@@ -28,6 +28,9 @@
     flex-wrap: wrap; /* Allow movie cards to wrap to the next line on smaller screens */
     justify-content: space-around;
     margin-top: 5px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 20px;
 }
 
 .movie-image {
