@@ -91,21 +91,10 @@ function openEditModal(movie) {
     <button id="update-movie-btn">Update</button>
   `;
 
-    async function putMovie(movie) {
-        console.log(movie.id)
-        const editedMovie = editedMovie();
-        const response = await postObjectAsJson(putUrl + "/" + movie.id, editedMovie, "PUT")
-        console.log("inde i putMovie")
-        if (response.ok) {
-            alert("Movie updated!")
-        } else {
-            alert("Movie not updated")
-        }
-    }
 
     // Add event listener for the "Update" button
     const updateButton = modalForm.querySelector("#update-movie-btn");
-    updateButton.addEventListener("click", function (e) {
+    updateButton.addEventListener("click", async function (e) {
         e.preventDefault();
 
         const editedTitle = modalForm.querySelector(".editTitle").value;
@@ -117,19 +106,18 @@ function openEditModal(movie) {
             description: editedDescription,
             image: editedImageUrl
         };
-        console.log(editedMovie)
 
-        const response = postObjectAsJson(putUrl + "/" + movie.id, editedMovie, "PUT")
-        console.log("inde i putMovie")
+        const response = await postObjectAsJson(putUrl + "/" + movie.id, editedMovie, "PUT");
+
+        console.log("Response Status:", response.status);
+
         if (response.ok) {
-            alert("Movie updated!")
+            alert("Movie updated!");
         } else {
-            alert("Movie not updated")
+            const errorText = await response.text();
+            console.error("Error:", errorText);
+            alert("Movie not updated");
         }
-        console.log(response.status)
-
-        const updateMovieButton = document.getElementById("update-movie-btn")
-        updateMovieButton.addEventListener("click", putMovie)
 
         // Close the modal when the update is successful
         editModal.style.display = "none";
@@ -140,6 +128,7 @@ function openEditModal(movie) {
 }
 
 const putUrl = "http://localhost:8080/movie"
+
 
 let movies = []
 
