@@ -43,4 +43,17 @@ function myFunction() {
     }
 }*/
 
+function openTicketsModal() {
+    var modal = document.getElementById("ticketsModal");
+    modal.style.display = "block";
+}
+
+function closeTicketsModal() {
+    var modal = document.getElementById("ticketsModal");
+    modal.style.display = "none";
+}
+
+function myTickets() {
+
+}
 

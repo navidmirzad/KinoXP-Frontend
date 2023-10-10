@@ -28,6 +28,8 @@
             <li><a href="#movies">Movies</a></li>
             <hr>
             <li><a href="#contact">Contact</a></li>
+            <hr>
+            <li><a onclick="openTicketsModal()" href="#myTickets">My Tickets</a></li>
         </ul>
         <div class="sign-in">
             <ul>
@@ -77,6 +79,16 @@
 
                 <button type="submit" id="submitBtn">Create Account</button>
             </form>
+        </div>
+    </div>
+
+    <div id="ticketsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTicketsModal()">&times;</span>
+            <h2>Your Tickets</h2>
+            <ul id="ticketList">
+                <!-- Ticket items will be dynamically added here -->
+            </ul>
         </div>
     </div>
 
