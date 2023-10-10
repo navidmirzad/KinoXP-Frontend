@@ -1,5 +1,4 @@
-
-import {fetchAnyUrl} from "./modulejson.js";
+import {fetchAnyUrl, postObjectAsJson} from "./modulejson.js";
 
 const urlBase = "http://localhost:8080/kinoxp";
 const limit = 5;
@@ -33,7 +32,6 @@ function insertMovieCards(movie) {
     const movieLink = document.createElement('a')
     movieLink.className = "movie-link"
     movieLink.href = movie.trailer
-    console.log(movie.trailer)
     movieLink.target = "_blank"
     movieLink.rel = "noopener noreferrer"
     movieLink.innerText = "View here"
@@ -45,10 +43,103 @@ function insertMovieCards(movie) {
     movieCardDiv.appendChild(hr);
     movieCardDiv.appendChild(movieLinkWrapper);
 
+    const editButton = document.createElement("button");
     const movieContainer = document.querySelector('.movie-container');
+    editButton.textContent = "Edit";
     movieContainer.appendChild(movieCardDiv);
-    console.log("hej")
+
+    createEditMovieModal(movie);
 }
+
+function createEditMovieModal(movie) {
+    // Create a button for editing the movie
+    const editButton = document.createElement("button");
+    editButton.innerText = "Edit Movie";
+    editButton.className = "edit-movie-btn";
+
+    // Add a click event listener to open the edit modal
+    editButton.addEventListener("click", function () {
+        openEditModal(movie);
+    });
+
+    // Append the button to a container element
+    const buttonContainer = document.createElement("div");
+    buttonContainer.appendChild(editButton);
+
+    // Append the button container to the movie card div
+    const movieCardDiv = document.querySelector(`[data-id="${movie.id}"]`);
+    movieCardDiv.appendChild(buttonContainer);
+
+}
+
+function openEditModal(movie) {
+    const editModal = document.getElementById("myModal2");
+    //const modalContent = modal.querySelector(".modal-content");
+    const modalForm = editModal.querySelector("form");
+
+
+    // Populate the modal form with the movie details
+    modalForm.innerHTML = `
+    <h3>Movie Title</h3>
+    <input type="hidden" name="id" value="${movie.id}">
+    <input type="text" class="editTitle" name="title" value="${movie.title}" required>
+    <h3>Movie Description</h3>
+    <input type="text" class="editDescription" name="description" value="${movie.description}" required>
+    <h3>Image url</h3>
+    <input type="text" class="editUrl" name="url" value="${movie.image}" required>
+    <!-- Add other input fields for editing movie details -->
+    <button id="update-movie-btn">Update</button>
+  `;
+
+    async function putMovie(movie) {
+        console.log(movie.id)
+        const editedMovie = editedMovie();
+        const response = await postObjectAsJson(putUrl + "/" + movie.id, editedMovie, "PUT")
+        console.log("inde i putMovie")
+        if (response.ok) {
+            alert("Movie updated!")
+        } else {
+            alert("Movie not updated")
+        }
+    }
+
+    // Add event listener for the "Update" button
+    const updateButton = modalForm.querySelector("#update-movie-btn");
+    updateButton.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const editedTitle = modalForm.querySelector(".editTitle").value;
+        const editedDescription = modalForm.querySelector(".editDescription").value;
+        const editedImageUrl = modalForm.querySelector(".editUrl").value;
+
+        const editedMovie = {
+            title: editedTitle,
+            description: editedDescription,
+            image: editedImageUrl
+        };
+        console.log(editedMovie)
+
+        const response = postObjectAsJson(putUrl + "/" + movie.id, editedMovie, "PUT")
+        console.log("inde i putMovie")
+        if (response.ok) {
+            alert("Movie updated!")
+        } else {
+            alert("Movie not updated")
+        }
+        console.log(response.status)
+
+        const updateMovieButton = document.getElementById("update-movie-btn")
+        updateMovieButton.addEventListener("click", putMovie)
+
+        // Close the modal when the update is successful
+        editModal.style.display = "none";
+    });
+
+    // Display the modal
+    editModal.style.display = "block";
+}
+
+const putUrl = "http://localhost:8080/movie"
 
 let movies = []
 
@@ -60,5 +151,4 @@ async function fetchMovies() {
 function actionGetMovies() {
     fetchMovies()
 }
-
 document.addEventListener("DOMContentLoaded", actionGetMovies)
