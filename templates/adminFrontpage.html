@@ -64,7 +64,8 @@
             <input type="text" name="title" id="title" placeholder="Insert movie title..." required="required"/>
 
             <h3><label>Movie description: </label></h3>
-            <textarea id="description" name="description" id="description" rows="5" cols="50" placeholder="Movie description..."
+            <textarea id="description" name="description" id="description" rows="5" cols="50"
+                      placeholder="Movie description..."
                       required></textarea>
 
             <h3><label>Image url: </label></h3>
@@ -95,36 +96,31 @@
 <section class="sub-section-alternative" id="movies">
     <div class="movie-container">
         <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
+            <img class="movie-image"
+                 src="https://m.media-amazon.com/images/M/MV5BZmQ3MWEyNTYtOTY1OC00MTljLWI3OGUtMmU1ZDc2OTYxNDQ4L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTczNjQwOTY@._V1_.jpg"
+                 alt="Movie Image"/>
+            <h3>TEST</h3>
+            <p>TEST...(FILMEN ER IKKE GEMT I DATABASEN)</p>
             <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
+            <p><a class="movie-link" href="https://www.imdb.com/title/tt0475293/?ref_=ttls_li_tt" target="_blank"
+                  rel="noopener"
                   rel="noreferrer">View here</a></p>
-        </div>
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
+
+
+            <!-- Edit and Delete buttons -->
+            <button class="edit-button"> Edit</button>
+            <button class="delete-button">Delete</button>
+            <!-- Edit form container (initially hidden) -->
+            <div class="edit-form-container">
+                <form class="edit-form">
+                    <!-- Add input fields for editing movie information -->
+                    <input type="text" class="movieId">
+                    <input type="text" class="edit-title" placeholder="New title...">
+                    <input type="text" class="edit-description" placeholder="New description...">
+                    <input type="text" class="edit-image-url" placeholder="New Image url...">
+                    <button type="submit" class="save-button">Save</button>
+                </form>
+            </div>
         </div>
     </div>
 </section>
@@ -149,5 +145,6 @@
 <script src="/js/modal.js"></script>
 <script src="/js/addmovie.js"></script>
 <script src="/js/checkboxes.js"></script>
+<script type="module" src="../js/fetchmovies.js"></script>
 </body>
 </html>
