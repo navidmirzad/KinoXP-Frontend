@@ -47,6 +47,7 @@ function insertMovieCards(movie) {
 
     const movieContainer = document.querySelector('.movie-container');
     movieContainer.appendChild(movieCardDiv);
+    console.log("hej")
 }
 
 let movies = []
