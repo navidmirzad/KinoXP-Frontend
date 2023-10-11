@@ -44,7 +44,7 @@ function insertMovieCards(movie) {
     movieCardDiv.appendChild(movieLinkWrapper);
 
     const editButton = document.createElement("button");
-    const movieContainer = document.querySelector('.movie-container');
+    const movieContainer = document.getElementById("movies-div");
     editButton.textContent = "Edit";
     movieContainer.appendChild(movieCardDiv);
 
@@ -186,4 +186,128 @@ async function fetchMovies() {
 function actionGetMovies() {
     fetchMovies()
 }
+
 document.addEventListener("DOMContentLoaded", actionGetMovies)
+
+
+function insertShowCards(show) {
+    const movieCardDiv = document.createElement("div")
+    movieCardDiv.className = "movie-card"
+    movieCardDiv.setAttribute("showId", show.id)
+
+    const movieImageLink = document.createElement("a")
+    movieImageLink.href = "/kino/movie"
+    movieImageLink.id = "movie-poster-link"
+
+    const movieImage = document.createElement("img")
+    movieImage.className = "movie-image"
+    movieImage.setAttribute("src", show.movie.image)
+    movieImage.setAttribute("alt","Movie Image")
+
+    movieImageLink.appendChild(movieImage)
+
+    const movieTitle = document.createElement('h3');
+    movieTitle.innerText = show.movie.title;
+
+    const date = document.createElement("p")
+    date.textContent = show.date
+
+    const time = document.createElement("p")
+    time.textContent = show.time
+
+    const button = document.createElement("button")
+    button.textContent = "Order Ticket"
+
+    const theaterHall = document.createElement("p")
+    theaterHall.textContent = show.theaterHall.name
+
+    const hr = document.createElement("hr")
+
+    movieCardDiv.appendChild(movieImageLink);
+    movieCardDiv.appendChild(movieTitle);
+    movieCardDiv.appendChild(hr);
+    movieCardDiv.appendChild(button)
+    movieCardDiv.appendChild(date)
+    movieCardDiv.appendChild(time)
+    movieCardDiv.appendChild(theaterHall)
+
+    const showContainer = document.getElementById("show-div");
+    showContainer.appendChild(movieCardDiv)
+
+    button.addEventListener("click", () => {
+        openTheaterHall(show.id)
+    })
+
+}
+
+function openTheaterHall(showId) {
+    const modal = document.getElementById("ticketModal");
+    const theaterHall = document.getElementById("theaterHall");
+
+    // Clear any previous content in the theater hall
+    theaterHall.innerHTML = "";
+
+    const smallTheaterRows = 20;
+    const smallTheaterSeatsPerRow = 12;
+    const bigTheaterRows = 25;
+    const bigTheaterSeatsPerRow = 16;
+
+    // Fetch available tickets for the show
+    fetch(`http://localhost:8080/kinoxp/ticketsbyshowid/${showId}`)
+        .then((response) => response.json())
+        .then((tickets) => {
+            // Create the theater hall display
+            const isSmallTheater = tickets.length <= smallTheaterRows * smallTheaterSeatsPerRow;
+
+            const numRows = isSmallTheater ? smallTheaterRows : bigTheaterRows;
+            const seatsPerRow = isSmallTheater ? smallTheaterSeatsPerRow : bigTheaterSeatsPerRow;
+
+            for (let row = 1; row <= numRows; row++) {
+                const rowElement = document.createElement("div");
+                rowElement.className = "row";
+
+                for (let seatNum = 1; seatNum <= seatsPerRow; seatNum++) {
+                    const seat = document.createElement("div");
+                    seat.className = "seat";
+
+                    const seatIndex = (row - 1) * seatsPerRow + seatNum;
+
+                    // Check if the seat is available (ticket.customer == null)
+                    if (seatIndex <= tickets.length && tickets[seatIndex - 1].customer == null) {
+                        seat.style.backgroundColor = "green"; // Available seat
+                    } else {
+                        seat.style.backgroundColor = "red"; // Reserved seat
+                    }
+
+
+                    rowElement.appendChild(seat);
+                }
+
+                theaterHall.appendChild(rowElement);
+            }
+
+            modal.style.display = "block";
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+function closeModal() {
+    const modal = document.getElementById("ticketModal");
+    modal.style.display = "none";
+}
+
+let shows = []
+const showUrl = "http://localhost:8080/kinoxp/today/shows"
+
+async function fetchShows() {
+    shows = await fetchAnyUrl(showUrl)
+    shows.forEach(insertShowCards)
+}
+
+function actionGetShows() {
+    fetchShows()
+}
+
+document.addEventListener("DOMContentLoaded", actionGetShows)

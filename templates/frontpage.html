@@ -130,13 +130,35 @@
     </div>
 </section>
 
-
-<section class="sub-section-alternative" id="movies">
+<section class="sub-section-alternative" id="todaysMovies">
     <div class="playing-now-header">
         <h2>Playing now</h2>
         <hr>
     </div>
-    <div class="movie-container">
+
+    <div class="movie-container" id="show-div">
+
+        <div id="ticketModal" class="modal-theater">
+            <div class="modal-theater-content">
+                <span class="close" id="closeModal">&times;</span>
+                <div id="theaterHall">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="sub-section-alternative" id="movies">
+    <div class="playing-now-header">
+        <h2>Movies</h2>
+        <hr>
+    </div>
+
+    <div class="movie-container" id="movies-div">
 <!--        <div class="movie-card">-->
 <!--            <a href="www.google.dk" id="movie-poster-link">-->
 <!--            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>-->
