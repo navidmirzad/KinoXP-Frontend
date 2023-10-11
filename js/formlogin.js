@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const inpUsername = document.getElementById("modalUsername")
     const inpPassword = document.getElementById("modalPassword")
     const submitBtn = document.getElementById("modalSubmitButton")
-    const url = "http://localhost:8080/kinoxp/login"
+    const url = "http://localhost:8080/kinoxp/customerlogin"
     let customer = {}
     sessionStorage.clear()
 
