@@ -174,20 +174,6 @@ async function deleteMovie(movieId) {
 
 }
 
-
-/*async function deleteMovie(movieId) {
-
-    const response = await postObjectAsJson(putUrl + "/" + movieId, {movieId}, "DELETE");
-    console.log("Response Status:", response.status);
-
-    if (response.ok) {
-        alert("Movie deleted!");
-    } else {
-        alert("Movie not deleted");
-    }
-
-}*/
-
 const putUrl = "http://localhost:8080/movie"
 
 let movies = []
