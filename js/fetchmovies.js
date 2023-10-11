@@ -48,10 +48,11 @@ function insertMovieCards(movie) {
     editButton.textContent = "Edit";
     movieContainer.appendChild(movieCardDiv);
 
-
-
     createEditMovieModal(movie);
 
+    // Create and append the "Delete" button
+    const deleteButton = createDeleteMovieButton(movie);
+    movieCardDiv.appendChild(deleteButton);
 
 }
 
@@ -142,6 +143,50 @@ function openEditModal(movie) {
     // Display the modal
     editModal.style.display = "block";
 }
+
+function createDeleteMovieButton(movie) {
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
+    deleteButton.className = "delete-movie-btn";
+
+    // Add a click event listener to delete the movie
+    deleteButton.addEventListener("click", async function () {
+       await deleteMovie(movie.id);
+    });
+
+    return deleteButton;
+}
+
+async function deleteMovie(movieId) {
+    const url = `${putUrl}/${movieId}`;  // Correct URL format
+    const response = await fetch(url, {
+        method: 'DELETE',
+    });
+
+    console.log(response);
+
+    if (response.status === 200) {
+        alert("Movie deleted!");
+        return response;
+    } else {
+        alert("Movie not deleted");
+    }
+
+}
+
+
+/*async function deleteMovie(movieId) {
+
+    const response = await postObjectAsJson(putUrl + "/" + movieId, {movieId}, "DELETE");
+    console.log("Response Status:", response.status);
+
+    if (response.ok) {
+        alert("Movie deleted!");
+    } else {
+        alert("Movie not deleted");
+    }
+
+}*/
 
 const putUrl = "http://localhost:8080/movie"
 
