@@ -247,13 +247,14 @@ function openTheaterHall(showId) {
     // Clear any previous content in the theater hall
     theaterHall.innerHTML = "";
 
+    // Define the number of rows and seats per row for each theater
     const smallTheaterRows = 20;
     const smallTheaterSeatsPerRow = 12;
     const bigTheaterRows = 25;
     const bigTheaterSeatsPerRow = 16;
 
     // Fetch available tickets for the show
-    fetch(`http://localhost:8080/kinoxp/ticketsbyshowid/${showId}`)
+    fetch("http://localhost:8080/kinoxp/ticketsbyshowid/" + showId)
         .then((response) => response.json())
         .then((tickets) => {
             // Create the theater hall display
@@ -267,24 +268,41 @@ function openTheaterHall(showId) {
                 rowElement.className = "row";
 
                 for (let seatNum = 1; seatNum <= seatsPerRow; seatNum++) {
-                    const seat = document.createElement("div");
+                    const seat = document.createElement("button");
                     seat.className = "seat";
 
                     const seatIndex = (row - 1) * seatsPerRow + seatNum;
 
+                    // FIX SEAT ID
+
+                    const seatIdentifier = `CR${row}S${seatNum}`;
+
                     // Check if the seat is available (ticket.customer == null)
                     if (seatIndex <= tickets.length && tickets[seatIndex - 1].customer == null) {
                         seat.style.backgroundColor = "green"; // Available seat
+                        // Add a click event listener to the available seat
+                        seat.addEventListener("click", () => {
+                            // Handle seat selection (post ticket to the backend, etc.)
+                            selectSeat(showId, seatIdentifier);
+                        });
                     } else {
                         seat.style.backgroundColor = "red"; // Reserved seat
                     }
 
+                    // Set the seat's id to the seatIdentifier
+                    seat.id = seatIdentifier;
 
                     rowElement.appendChild(seat);
                 }
 
                 theaterHall.appendChild(rowElement);
             }
+
+            window.addEventListener("click", (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
 
             modal.style.display = "block";
         })
@@ -293,10 +311,18 @@ function openTheaterHall(showId) {
         });
 }
 
+// Function to handle seat selection (post ticket to the backend)
+function selectSeat(showId, seatIdentifier) {
+    // You can implement the logic to post the ticket to your backend here
+    // Example: fetch(`/your-backend-endpoint`, { method: 'POST', body: JSON.stringify({ showId, seatIdentifier }) })
+}
+
 function closeModal() {
     const modal = document.getElementById("ticketModal");
     modal.style.display = "none";
 }
+
+
 
 let shows = []
 const showUrl = "http://localhost:8080/kinoxp/today/shows"
