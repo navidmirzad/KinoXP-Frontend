@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault()
         customer.userName = inpUsername.value
         customer.password = inpPassword.value
-        console.log(customer.userName)
-        console.log(customer.password)
 
         try {
             const response = await postObjectAsJson(url, customer, "POST");

@@ -163,3 +163,41 @@ a {
     position: relative;
     float: left;
 }
+
+
+/* Table Styles */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.styled-table img {
+    max-width: 100px; /* Adjust as needed */
+    max-height: 100px; /* Adjust as needed */
+}
+
+.styled-table th,
+.styled-table td {
+    border: 1px solid #dddddd;
+    text-align: center; /* Adjust alignment (e.g., left, center, right) */
+    padding: 8px;
+    max-width: 200px; /* Adjust the width as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 30px;
+}
+
+.styled-table button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-left: 50px;
+
+}
+
+.styled-table th {
+    background-color: black;
+}
