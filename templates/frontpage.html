@@ -29,13 +29,16 @@
             <hr>
             <li><a href="#contact">Contact</a></li>
             <hr>
-            <li><a onclick="openTicketsModal()" href="#myTickets">My Tickets</a></li>
+            <li id="myTicketsNavItem" style="display: none">
+                <a onclick="openTicketsModal()" href="#myTickets">My Tickets</a>
+            </li>
         </ul>
         <div class="sign-in">
             <ul>
-                <li>
-                    <button onclick="openLoginModal()">Sign In</button>
-                    <button onclick="openCreateAccountModal()">Create Account</button>
+                <li id="buttons">
+                    <button id="loginButton" onclick="openLoginModal()">Sign In</button>
+
+                    <button id="createButton" onclick="openCreateAccountModal()">Create Account</button>
                 </li>
             </ul>
         </div>
@@ -49,13 +52,13 @@
               cursor:pointer;">&times;
         </span>
             <h2 class="login-header">Login</h2>
-            <form action="http://localhost:8080/kinoxp/login" method="post" id="modalLoginForm">
+            <form method="post" id="modalLoginForm">
                 <label for="modalUsername">Username:</label>
                 <input type="text" id="modalUsername" name="modalUsername" required><br><br>
                 <label for="modalPassword">Password:</label>
                 <input type="password" id="modalPassword" name="modalPassword" required><br><br>
                 <div id="login-result"></div>
-                <button type="submit" id="modalSubmitButton">Login</button>
+                <button type="button" id="modalSubmitButton">Login</button>
                 <button type="button" id="forgotPasswordButton">Forgot Password</button>
             </form>
         </div>
@@ -85,10 +88,22 @@
     <div id="ticketsModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeTicketsModal()">&times;</span>
-            <h2>Your Tickets</h2>
-            <ul id="ticketList">
-                <!-- Ticket items will be dynamically added here -->
-            </ul>
+
+            <table id="ticketTable" class="table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Theater hall</th>
+                    <th>Seat</th>
+                </tr>
+                </thead>
+                <tbody id="ticketList">
+
+                </tbody>
+            </table>
         </div>
     </div>
 
