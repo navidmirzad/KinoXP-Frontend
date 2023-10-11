@@ -48,7 +48,11 @@ function insertMovieCards(movie) {
     editButton.textContent = "Edit";
     movieContainer.appendChild(movieCardDiv);
 
+
+
     createEditMovieModal(movie);
+
+
 }
 
 function createEditMovieModal(movie) {
@@ -108,7 +112,6 @@ function openEditModal(movie) {
         };
 
         const response = await postObjectAsJson(putUrl + "/" + movie.id, editedMovie, "PUT");
-
         console.log("Response Status:", response.status);
 
         if (response.ok) {
@@ -123,12 +126,24 @@ function openEditModal(movie) {
         editModal.style.display = "none";
     });
 
+    // Add event listener for the "X" button to close the modal
+    const closeButton = editModal.querySelector(".close");
+    closeButton.addEventListener("click", function () {
+        editModal.style.display = "none";
+    });
+
+    // Add event listener to close the modal when clicking outside of it
+    window.addEventListener("click", function (event) {
+        if (event.target === editModal) {
+            editModal.style.display = "none";
+        }
+    });
+
     // Display the modal
     editModal.style.display = "block";
 }
 
 const putUrl = "http://localhost:8080/movie"
-
 
 let movies = []
 
