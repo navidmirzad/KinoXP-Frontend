@@ -46,14 +46,16 @@ async function insertMovieCards(movie) {
     const showTimes = await fetchShowTimesForMovie(movie.id);
     showTimes.forEach(showTime => {
         const theaterHallAndTime = document.createElement("p")
-        theaterHallAndTime.textContent = showTime.theaterHall.name + "    " + showTime.time
+        const theaterHallAndDate = document.createElement("p")
+        theaterHallAndTime.textContent = showTime.theaterHall.name + " | " + showTime.time + " | " + showTime.date
 
         movieCardDiv.appendChild(theaterHallAndTime)
+        movieCardDiv.appendChild(theaterHallAndDate)
     })
+
 
     const movieContainer = document.querySelector('.movie-container');
     movieContainer.appendChild(movieCardDiv);
-
 }
 
 let movies = []
