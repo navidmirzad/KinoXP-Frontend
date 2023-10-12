@@ -17,7 +17,6 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
 // Modal button ends
 
 // inside the form for the modalbtn
@@ -46,7 +45,6 @@ function addMovie() {
 
     // Get all the selected checkboxes
     const checkboxes = document.querySelectorAll('input[name="genre"]:checked');
-
 
     // Add selected genre IDs to the movie object
     checkboxes.forEach(checkbox => {

@@ -1,10 +1,18 @@
-import { fetchAnyUrl } from "./modulejson.js";
+import {fetchAnyUrl, postObjectAsJson} from "./modulejson.js";
 
 const urlBase = "http://localhost:8080/kinoxp";
 const limit = 5;
 const urlMovies = `${urlBase}?limit=${limit}`;
 const movieContainer = document.querySelector(".movie-container");
 
+function insertMovieCards(movie) {
+    const movieCardDiv = document.createElement("div")
+    movieCardDiv.className = "movie-card"
+    movieCardDiv.setAttribute("data-id", movie.id)
+
+    const movieImageLink = document.createElement("a")
+    movieImageLink.href = "/kino/movie"
+    movieImageLink.id = "movie-poster-link"
 async function fetchMovies() {
     try {
         const movies = await fetchAnyUrl(urlMovies);
@@ -20,6 +28,8 @@ async function fetchMovies() {
 
             const movieTitle = document.createElement("h3");
             movieTitle.innerText = movie.title;
+    movieImageLink.appendChild(movieImage)
+
 
             const movieSummary = document.createElement("p");
             movieSummary.innerText = movie.description;
@@ -100,6 +110,9 @@ async function fetchShowtimesForMovie(movieId) {
     const response = await fetch(showtimesUrl);
     const showtimesData = await response.json();
     return showtimesData;
+    const movieContainer = document.querySelector('.movie-container');
+    movieContainer.appendChild(movieCardDiv);
+
 }
 
 async function fetchTheatreForSmallMovie(movieId) {
@@ -114,20 +127,12 @@ async function fetchTheatreForSmallMovie(movieId) {
     }
 }
 
-async function fetchTheatreForBigMovie(movieId) {
-    try {
-        const theaterUrl = `${urlBase}/shows2/${movieId}`;
-        const response = await fetch(theaterUrl);
-        const theaterData = await response.json();
-        return theaterData;
-    } catch (error) {
-        console.error(`Error fetching big theater information for movie ID ${movieId}:`, error);
-        return [];
-    }
+async function fetchMovies() {
+    movies = await fetchAnyUrl(urlMovies)
+    movies.forEach(insertMovieCards)
 }
 
 function actionGetMovies() {
     fetchMovies();
 }
-
 document.addEventListener("DOMContentLoaded", actionGetMovies);

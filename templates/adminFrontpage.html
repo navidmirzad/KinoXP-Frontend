@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/movie-container.css"/>
     <link rel="stylesheet" href="/css/input-container.css"/>
     <link rel="stylesheet" href="/css/modal.css"/>
+    <link rel="stylesheet" href="/css/editMovieModal.css"/>
     <link rel="stylesheet" href="/css/footer.css"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +14,7 @@
           rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
-    <title>KinoXP Frontpage</title>
+    <title>KinoXP Admin Frontpage</title>
 </head>
 <body>
 <section class="hero" id="home">
@@ -64,7 +65,8 @@
             <input type="text" name="title" id="title" placeholder="Insert movie title..." required="required"/>
 
             <h3><label>Movie description: </label></h3>
-            <textarea id="description" name="description" id="description" rows="5" cols="50" placeholder="Movie description..."
+            <textarea id="description" name="description" id="description" rows="5" cols="50"
+                      placeholder="Movie description..."
                       required></textarea>
 
             <h3><label>Image url: </label></h3>
@@ -86,7 +88,16 @@
             <input type="text" name="director" id="director" placeholder="Insert directors name..." required/>
             <button id="submit-movie-btn">Submit</button>
             <button id="generateCheckboxes">Generate Checkboxes</button>
+            </form>
+        </div>
+    </div>
+</section>
 
+<section id="modal2">
+    <div id="myModal2" class="modal">
+        <div class="modal-content2">
+            <span class="close">&times;</span>
+            <form method="PUT" action="/movie"></form>
             </form>
         </div>
     </div>
@@ -94,38 +105,17 @@
 
 <section class="sub-section-alternative" id="movies">
     <div class="movie-container">
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
+        <!--<div class="movie-card">
+            <img class="movie-image"
+                 src="https://m.media-amazon.com/images/M/MV5BZmQ3MWEyNTYtOTY1OC00MTljLWI3OGUtMmU1ZDc2OTYxNDQ4L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTczNjQwOTY@._V1_.jpg"
+                 alt="Movie Image"/>
+            <h3>TEST</h3>
+            <p>TEST...(FILMEN ER IKKE GEMT I DATABASEN)</p>
             <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
+            <p><a class="movie-link" href="https://www.imdb.com/title/tt0475293/?ref_=ttls_li_tt" target="_blank"
+                  rel="noopener"
                   rel="noreferrer">View here</a></p>
-        </div>
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>
+        </div>-->
     </div>
 </section>
 
@@ -149,5 +139,6 @@
 <script src="/js/modal.js"></script>
 <script src="/js/addmovie.js"></script>
 <script src="/js/checkboxes.js"></script>
+<script type="module" src="../js/fetchMoviesAdmin.js"></script>
 </body>
 </html>

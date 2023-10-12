@@ -35,6 +35,7 @@
 
 .movie-image {
     width: 100%; /* Make the image responsive */
+    cursor: pointer;
 }
 
 hr {

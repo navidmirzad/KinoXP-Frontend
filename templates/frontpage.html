@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
     <link rel="stylesheet" href="/css/home-section.css"/>
     <link rel="stylesheet" href="/css/movie-container.css"/>
@@ -12,7 +14,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
     <title>KinoXP Frontpage</title>
-
+    <script src="../js/createaccount.js"></script>
+    <link rel="stylesheet" href="../css/createaccount.css">
 </head>
 
 <body>
@@ -25,16 +28,22 @@
             <li><a href="#movies">Movies</a></li>
             <hr>
             <li><a href="#contact">Contact</a></li>
+            <hr>
+            <li id="myTicketsNavItem" style="display: none">
+                <a onclick="openTicketsModal()" href="#myTickets">My Tickets</a>
+            </li>
         </ul>
         <div class="sign-in">
             <ul>
-                <li>
-                    <button onclick="openLoginModal()">Sign In</button>
-                    <button>Create Account</button>
+                <li id="buttons">
+                    <button id="loginButton" onclick="openLoginModal()">Sign In</button>
+
+                    <button id="createButton" onclick="openCreateAccountModal()">Create Account</button>
                 </li>
             </ul>
         </div>
     </nav>
+
     <!-- Modal for login -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
@@ -43,15 +52,60 @@
               cursor:pointer;">&times;
         </span>
             <h2 class="login-header">Login</h2>
-            <form action="http://localhost:8080/kinoxp/login" method="post" id="modalLoginForm">
+            <form method="post" id="modalLoginForm">
                 <label for="modalUsername">Username:</label>
                 <input type="text" id="modalUsername" name="modalUsername" required><br><br>
                 <label for="modalPassword">Password:</label>
                 <input type="password" id="modalPassword" name="modalPassword" required><br><br>
                 <div id="login-result"></div>
-                <button type="submit" id="modalSubmitButton">Login</button>
+                <button type="button" id="modalSubmitButton">Login</button>
                 <button type="button" id="forgotPasswordButton">Forgot Password</button>
             </form>
+        </div>
+    </div>
+    <!-- Modal for Create Account -->
+    <div id="createAccountModal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeCreateAccountModal()" style="float:right; cursor:pointer;">&times;</span>
+            <h2 style="color: #2c2c2c;">Create Account</h2>
+            <form id="createAccountForm">
+                <label for="newFirstName">First Name:</label>
+                <input type="text" id="newFirstName" name="newFirstName" required><br><br>
+                <label for="newLastName">Last Name:</label>
+                <input type="text" id="newLastName" name="newLastName" required><br><br>
+                <label for="newEmail">Email:</label>
+                <input type="email" id="newEmail" name="newEmail" required><br><br>
+                <label for="newUsername">Username:</label>
+                <input type="text" id="newUsername" name="newUsername" required><br><br>
+                <label for="newPassword">Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required><br><br>
+
+                <button type="submit" id="submitBtn">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="ticketsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTicketsModal()">&times;</span>
+
+            <table id="ticketTable" class="styled-table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th></th>
+                    <th></th>
+                    <th>Theater hall</th>
+                    <th>Seat</th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody id="ticketList">
+
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -83,51 +137,40 @@
         <hr>
     </div>
     <div class="movie-container">
-        <div class="movie-card">
-            <img class="movie-image"
-                 src="https://m.media-amazon.com/images/M/MV5BZmQ3MWEyNTYtOTY1OC00MTljLWI3OGUtMmU1ZDc2OTYxNDQ4L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTczNjQwOTY@._V1_.jpg"
-                 alt="Movie Image"/>
-            <h3>High School Musical</h3>
-            <p>A popular high school athlete...(FILMEN ER IKKE GEMT I DATABASEN)</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt0475293/?ref_=ttls_li_tt" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>
-        <div class="movie-card">
-            <img class="movie-image"
-                 src="https://m.media-amazon.com/images/M/MV5BZmQ3MWEyNTYtOTY1OC00MTljLWI3OGUtMmU1ZDc2OTYxNDQ4L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTczNjQwOTY@._V1_.jpg"
-                 alt="Movie Image"/>
-            <h3>TEST</h3>
-            <p>TEST...(FILMEN ER IKKE GEMT I DATABASEN)</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt0475293/?ref_=ttls_li_tt" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>
-        <!--
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>
-        <div class="movie-card">
-            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>
-            <h3>Suzume No Tojimari</h3>
-            <p>Short summary of movie/plot</p>
-            <hr/>
-            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"
-                  rel="noreferrer">View here</a></p>
-        </div>-->
+<!--        <div class="movie-card">-->
+<!--            <a href="www.google.dk" id="movie-poster-link">-->
+<!--            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>-->
+<!--            </a>-->
+<!--            <h3>Suzume No Tojimari</h3>-->
+<!--            <p>Short summary of movie/plot</p>-->
+<!--            <hr/>-->
+<!--            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"-->
+<!--                  rel="noreferrer">View here</a></p>-->
+<!--        </div>-->
+<!--        <div class="movie-card">-->
+<!--            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>-->
+<!--            <h3>Suzume No Tojimari</h3>-->
+<!--            <p>Short summary of movie/plot</p>-->
+<!--            <hr/>-->
+<!--            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"-->
+<!--                  rel="noreferrer">View here</a></p>-->
+<!--        </div>-->
+<!--        <div class="movie-card">-->
+<!--            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>-->
+<!--            <h3>Suzume No Tojimari</h3>-->
+<!--            <p>Short summary of movie/plot</p>-->
+<!--            <hr/>-->
+<!--            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"-->
+<!--                  rel="noreferrer">View here</a></p>-->
+<!--        </div>-->
+<!--        <div class="movie-card">-->
+<!--            <img class="movie-image" src="/images/slideshow1.jpg" alt="Movie Image"/>-->
+<!--            <h3>Suzume No Tojimari</h3>-->
+<!--            <p>Short summary of movie/plot</p>-->
+<!--            <hr/>-->
+<!--            <p><a class="movie-link" href="https://www.imdb.com/title/tt16428256/" target="_blank" rel="noopener"-->
+<!--                  rel="noreferrer">View here</a></p>-->
+<!--        </div>-->
     </div>
 </section>
 
@@ -151,6 +194,6 @@
 <script src="../js/loginmodal.js"></script>
 <script src="../js/frontpage.js"></script>
 <script type="module" src="../js/fetchmovies.js"></script>
-<script src="../js/adminLoginWorks.js"></script>
+<script type="module" src="../js/formlogin.js"></script>
 </body>
 </html>
