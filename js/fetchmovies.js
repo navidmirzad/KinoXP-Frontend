@@ -3,9 +3,8 @@ import {fetchAnyUrl, postObjectAsJson} from "./modulejson.js";
 const urlBase = "http://localhost:8080/kinoxp";
 const limit = 5;
 const urlMovies = `${urlBase}?limit=${limit}`;
-const movieContainer = document.querySelector(".movie-container");
 
-function insertMovieCards(movie) {
+async function insertMovieCards(movie) {
     const movieCardDiv = document.createElement("div")
     movieCardDiv.className = "movie-card"
     movieCardDiv.setAttribute("data-id", movie.id)
@@ -13,119 +12,51 @@ function insertMovieCards(movie) {
     const movieImageLink = document.createElement("a")
     movieImageLink.href = "/kino/movie"
     movieImageLink.id = "movie-poster-link"
-async function fetchMovies() {
-    try {
-        const movies = await fetchAnyUrl(urlMovies);
 
-        movies.forEach(async movie => {
-            const movieCardDiv = document.createElement("div");
-            movieCardDiv.className = "movie-card";
+    const movieImage = document.createElement("img")
+    movieImage.className = "movie-image"
+    movieImage.setAttribute("src", movie.image)
+    movieImage.setAttribute("alt", "Movie Image")
 
-            const movieImage = document.createElement("img");
-            movieImage.className = "movie-image";
-            movieImage.setAttribute("src", movie.image);
-            movieImage.setAttribute("alt", "Movie Image");
-
-            const movieTitle = document.createElement("h3");
-            movieTitle.innerText = movie.title;
     movieImageLink.appendChild(movieImage)
 
+    const movieTitle = document.createElement('h3');
+    movieTitle.innerText = movie.title;
 
-            const movieSummary = document.createElement("p");
-            movieSummary.innerText = movie.description;
+    const movieSummary = document.createElement("p")
+    movieSummary.innerText = movie.description
 
-            const hr = document.createElement("hr");
+    const hr = document.createElement("hr")
 
-            const showtimesContainer = document.createElement("div");
-            showtimesContainer.className = "showtimes-container";
+    const movieLinkWrapper = document.createElement('p')
+    const movieLink = document.createElement('a')
+    movieLink.className = "movie-link"
+    movieLink.href = movie.trailer
+    movieLink.target = "_blank"
+    movieLink.rel = "noopener noreferrer"
+    movieLink.innerText = "View here"
+    movieLinkWrapper.appendChild(movieLink)
 
+    movieCardDiv.appendChild(movieImageLink);
+    movieCardDiv.appendChild(movieTitle);
+    movieCardDiv.appendChild(movieSummary);
+    movieCardDiv.appendChild(hr);
+    movieCardDiv.appendChild(movieLinkWrapper);
 
-            const theaterHallInfo = document.createElement("div");
-            theaterHallInfo.className = "theater-Hall-Info";
+    const showTimes = await fetchShowTimesForMovie(movie.id);
+    showTimes.forEach(showTime => {
+        const theaterHallAndTime = document.createElement("p")
+        theaterHallAndTime.textContent = showTime.theaterHall.name + "    " + showTime.time
 
-            if (movie.theaterHall === "/kinoxp/shows1") {
+        movieCardDiv.appendChild(theaterHallAndTime)
+    })
 
-                const smallTheater = await fetchTheatreForSmallMovie(movie.id);
-                smallTheater.forEach(theater => {
-                    const smallTheaterBox = document.createElement("div");
-                    smallTheaterBox.className = "theater-box";
-                    smallTheaterBox.textContent = `Small Theater: ${theater.theaterhall}`;
-                    theaterHallInfo.appendChild(smallTheaterBox);
-                });
-            } else if (movie.theaterHall === "/kinoxp/shows2") {
-                // Fetch and add big theater information
-                const bigTheater = await fetchTheatreForBigMovie(movie.id);
-                bigTheater.forEach(theater => {
-                    const bigTheaterBox = document.createElement("div");
-                    bigTheaterBox.className = "theater-box";
-                    bigTheaterBox.textContent = `Big Theater: ${theater.theaterhall}`;
-                    theaterHallInfo.appendChild(bigTheaterBox);
-                });
-            }
-
-            const movieLinkWrapper = document.createElement("p");
-            const movieLink = document.createElement("a");
-            movieLink.className = "movie-link";
-            movieLink.href = movie.trailer;
-            movieLink.target = "_blank";
-            movieLink.rel = "noopener noreferrer";
-            movieLink.innerText = "View here";
-            movieLinkWrapper.appendChild(movieLink);
-
-            movieCardDiv.appendChild(movieImage);
-            movieCardDiv.appendChild(movieTitle);
-            movieCardDiv.appendChild(movieSummary);
-            movieCardDiv.appendChild(hr);
-            movieCardDiv.appendChild(showtimesContainer);
-            movieCardDiv.appendChild(theaterHallInfo);
-
-            movieCardDiv.appendChild(movieLinkWrapper);
-            const showtimes = await fetchShowtimesForMovie(movie.id);
-            showtimes.forEach(showtime => {
-                const showtimeBox = document.createElement("div");
-                const theaterhall=document.createElement("p")
-                theaterhall.textContent=showtime.theaterHall.name+ "    "+showtime.time
-
-                movieCardDiv.appendChild(theaterhall)
-
-                showtimeBox.addEventListener("click", () => {
-                    // Handle the click event, e.g., navigate to the booking page
-                    console.log("Selected Showtime:", showtime.time);
-                });
-
-                showtimesContainer.appendChild(showtimeBox);
-            });
-
-            movieContainer.appendChild(movieCardDiv);
-
-
-        });
-    } catch (error) {
-        console.error("Error fetching movies:", error);
-    }
-}
-
-async function fetchShowtimesForMovie(movieId) {
-    const showtimesUrl = `http://localhost:8080/kinoxp/allshows/${movieId}`;
-    const response = await fetch(showtimesUrl);
-    const showtimesData = await response.json();
-    return showtimesData;
     const movieContainer = document.querySelector('.movie-container');
     movieContainer.appendChild(movieCardDiv);
 
 }
 
-async function fetchTheatreForSmallMovie(movieId) {
-    try {
-        const theaterUrl = `/kinoxp/shows1/${movieId}`;
-        const response = await fetch(theaterUrl);
-        const theaterData = await response.json();
-        return theaterData;
-    } catch (error) {
-        console.error(`Error fetching small theater information for movie ID ${movieId}:`, error);
-        return [];
-    }
-}
+let movies = []
 
 async function fetchMovies() {
     movies = await fetchAnyUrl(urlMovies)
@@ -133,6 +64,14 @@ async function fetchMovies() {
 }
 
 function actionGetMovies() {
-    fetchMovies();
+    fetchMovies()
 }
-document.addEventListener("DOMContentLoaded", actionGetMovies);
+
+async function fetchShowTimesForMovie(movieId) {
+    const showtimesUrl = "http://localhost:8080/kinoxp/allshows/" + movieId;
+    const response = await fetch(showtimesUrl);
+    const showtimesData = await response.json();
+    return showtimesData;
+}
+
+document.addEventListener("DOMContentLoaded", actionGetMovies)
