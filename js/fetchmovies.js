@@ -2,8 +2,7 @@
 import {fetchAnyUrl} from "./modulejson.js";
 
 const urlBase = "http://localhost:8080/kinoxp";
-const limit = 5;
-const urlMovies = `${urlBase}?limit=${limit}`;
+
 
 function insertMovieCards(movie) {
     const movieCardDiv = document.createElement("div")
@@ -11,7 +10,7 @@ function insertMovieCards(movie) {
     movieCardDiv.setAttribute("data-id", movie.id)
 
     const movieImageLink = document.createElement("a")
-    movieImageLink.href = "/kino/movie"
+    movieImageLink.href = "/kinoxp/{showId}"
     movieImageLink.id = "movie-poster-link"
 
     const movieImage = document.createElement("img")
@@ -47,13 +46,12 @@ function insertMovieCards(movie) {
 
     const movieContainer = document.querySelector('.movie-container');
     movieContainer.appendChild(movieCardDiv);
-    console.log("hej")
 }
 
 let movies = []
 
 async function fetchMovies() {
-    movies = await fetchAnyUrl(urlMovies)
+    movies = await fetchAnyUrl(urlBase)
     movies.forEach(insertMovieCards)
 }
 
