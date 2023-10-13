@@ -71,6 +71,58 @@ function isSeatInList(value) {
     return false;
 }
 
+function preparePayload() {
+    const showDetail = document.querySelector('.show-details');
+    const showId = showDetail.getAttribute('data-id');
+    const seatListItems = document.querySelectorAll('#seatlist li');
+
+    const selectedSeats = [];
+    seatListItems.forEach(item => {
+        selectedSeats.push(item.dataset.value);
+    });
+
+    const seatId = selectedSeats[0];
+
+    const customerId = 1
+
+    return {
+        showId: showId,
+        seatId: seatId,
+        customerId: customerId
+    };
+}
+
+async function buyTicket() {
+    const payload = preparePayload();
+    const url = 'http://localhost:8080/kinoxp/ticket';
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        });
+
+        console.log(payload)
+        const responseData = await response.json();
+
+        if (response.ok) {
+            alert('Ticket issued successfully!');
+            window.location.href = "/kinoxp"
+        } else {
+            alert('Error issuing ticket: ' + responseData.message);
+        }
+    } catch (error) {
+        alert('There was a problem with the request: ' + error.message);
+    }
+}
+
+document.getElementById("buy-ticket").addEventListener('click', buyTicket);
+
+
+
 let shows = []
 let seats = []
 
