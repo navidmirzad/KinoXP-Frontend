@@ -9,7 +9,7 @@ async function insertMovieCards(movie) {
     movieCardDiv.setAttribute("data-id", movie.id)
 
     const movieImageLink = document.createElement("a")
-    movieImageLink.href = "/kinoxp/{showId}"
+    movieImageLink.href = "showCurrentMovie.html"
     movieImageLink.id = "movie-poster-link"
 
     const movieImage = document.createElement("img")
