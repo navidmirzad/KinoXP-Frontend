@@ -1,8 +1,8 @@
 
 import {fetchAnyUrl} from "./modulejson.js";
 
-const urlShow = "http://localhost:8080/kinoxp/currentshow/1"
-const urlSeat = "http://localhost:8080/kinoxp/1"
+const urlShow = "http://localhost:8080/kinoxp/currentshow/{showId}"
+const urlSeat = "http://localhost:8080/kinoxp/{showId}"
 
 function insertShowDetails(show){
     const showDetails = document.createElement("div")
@@ -110,7 +110,7 @@ async function buyTicket() {
 
         if (response.ok) {
             alert('Ticket issued successfully!');
-            window.location.href = "/kinoxp"
+            window.location.href = "frontpage.html"
         } else {
             alert('Error issuing ticket: ' + responseData.message);
         }
