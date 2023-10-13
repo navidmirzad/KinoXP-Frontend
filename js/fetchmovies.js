@@ -1,10 +1,9 @@
-
-import {fetchAnyUrl} from "./modulejson.js";
+import {fetchAnyUrl, postObjectAsJson} from "./modulejson.js";
 
 const urlBase = "http://localhost:8080/kinoxp";
 
 
-function insertMovieCards(movie) {
+async function insertMovieCards(movie) {
     const movieCardDiv = document.createElement("div")
     movieCardDiv.className = "movie-card"
     movieCardDiv.setAttribute("data-id", movie.id)
@@ -16,7 +15,7 @@ function insertMovieCards(movie) {
     const movieImage = document.createElement("img")
     movieImage.className = "movie-image"
     movieImage.setAttribute("src", movie.image)
-    movieImage.setAttribute("alt","Movie Image")
+    movieImage.setAttribute("alt", "Movie Image")
 
     movieImageLink.appendChild(movieImage)
 
@@ -32,7 +31,6 @@ function insertMovieCards(movie) {
     const movieLink = document.createElement('a')
     movieLink.className = "movie-link"
     movieLink.href = movie.trailer
-    console.log(movie.trailer)
     movieLink.target = "_blank"
     movieLink.rel = "noopener noreferrer"
     movieLink.innerText = "View here"
@@ -43,6 +41,17 @@ function insertMovieCards(movie) {
     movieCardDiv.appendChild(movieSummary);
     movieCardDiv.appendChild(hr);
     movieCardDiv.appendChild(movieLinkWrapper);
+
+    const showTimes = await fetchShowTimesForMovie(movie.id);
+    showTimes.forEach(showTime => {
+        const theaterHallAndTime = document.createElement("p")
+        const theaterHallAndDate = document.createElement("p")
+        theaterHallAndTime.textContent = showTime.theaterHall.name + " | " + showTime.time + " | " + showTime.date
+
+        movieCardDiv.appendChild(theaterHallAndTime)
+        movieCardDiv.appendChild(theaterHallAndDate)
+    })
+
 
     const movieContainer = document.querySelector('.movie-container');
     movieContainer.appendChild(movieCardDiv);
@@ -57,6 +66,13 @@ async function fetchMovies() {
 
 function actionGetMovies() {
     fetchMovies()
+}
+
+async function fetchShowTimesForMovie(movieId) {
+    const showtimesUrl = "http://localhost:8080/kinoxp/allshows/" + movieId;
+    const response = await fetch(showtimesUrl);
+    const showtimesData = await response.json();
+    return showtimesData;
 }
 
 document.addEventListener("DOMContentLoaded", actionGetMovies)
