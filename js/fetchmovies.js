@@ -57,11 +57,12 @@ async function insertMovieCards(movie) {
             // Fetch tickets for the selected showtime
             const tickets = await fetchTicketsForShowTime(showTime.id);
 
+            const visualHall = getHall(tickets)
+
             const dropdown = document.createElement("select")
 
-            let seatId;
+            let seatId
 
-            // Create and populate dropdowns for each ticket
             tickets.forEach(ticket => {
                 const option = document.createElement("option")
                 option.value = ticket.id
@@ -69,13 +70,17 @@ async function insertMovieCards(movie) {
                 option.text = ticket.seat.id
                 seatId = ticket.seat.id
                 dropdown.appendChild(option)
+
             });
 
             const button = document.createElement("button")
             button.textContent = "Select Ticket"
 
-            modalContent.appendChild(dropdown)
+            //modalContent.appendChild(table)
+            //modalContent.appendChild(dropdown)
             modalContent.appendChild(button);
+            modalContent.appendChild(visualHall)
+
 
             button.addEventListener("click", async () => {
                 const selectedTicketId = dropdown.value; // Get the selected ticket's value
@@ -120,15 +125,64 @@ async function insertMovieCards(movie) {
     movieContainer.appendChild(movieCardDiv);
 }
 
-function ticketDropdown(ticket) {
-    const modal = document.getElementById("modalContent")
-    modal.innerHTML += `
-            <h3>Tickets</h3>
-            <select>
-                <option value="${ticket.seat.id}">${ticket.seat.id}</option>
-            </select>`
-    console.log(ticket.seat.id)
+function getSeat(ticket) {
+    const td = document.createElement('td')
+    if (ticket.customer === null) {
+        td.addEventListener('click', async () => {
+            const modal = document.getElementById('modal-order')
+            const userName = sessionStorage.getItem("userName")
+            const ticketObj = {
+                ticketId: ticket.id,
+                seatId: ticket.seat.id,
+                userName: userName
+            }
+            console.log(ticketObj)
+            const response = await postObjectAsJson(postTicketUrl, ticketObj, "PUT")
+            console.log(response.status)
+
+            if (response.ok) {
+                alert("Ticket has been bought")
+                modal.style.display = 'none';
+            } else {
+                const errorText = await response.text()
+                console.log(errorText)
+                alert("Something went wrong")
+            }
+        })
+    }
+    td.innerHTML = `<div class="seat" style='height: 20px; width: 20px; border-radius: 100px; background-color: ${ticket.customer === null ? "green;" : "red;"}'></div>`
+    return td
 }
+
+function getRow(tickets) {
+    const tr = document.createElement("tr")
+    tickets.forEach(td => {
+        const node = getSeat(td)
+        tr.appendChild(node)
+    })
+    return tr
+}
+
+function getHall(tickets) {
+    let currentRow = 1
+    let row = []
+    const hall = []
+    tickets.forEach(ticket => {
+        if (currentRow !== ticket.seat.rowNumber) {
+            currentRow = ticket.seat.rowNumber
+            const newRow = getRow(row)
+            hall.push(newRow)
+            row = []
+        }
+        row.push(ticket)
+    })
+    const table = document.createElement("table")
+    hall.forEach(hallRow => {
+        table.appendChild(hallRow)
+    })
+    return table
+}
+
 
 let movies = []
 
