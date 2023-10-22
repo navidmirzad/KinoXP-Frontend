@@ -201,3 +201,11 @@ a {
 .styled-table th {
     background-color: black;
 }
+
+.seat {
+    cursor: pointer;
+}
+
+.seat:hover {
+    background-color: darkgreen;
+}
